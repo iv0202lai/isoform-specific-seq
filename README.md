@@ -1,24 +1,30 @@
+# Isoform-specific-seq
+by Ivan Pochou Lai at School of Medicine, National Taiwan University
+
 ## Introduction
 This is a tool used to get isoform-specific sequence of mice from an Ensembl transcript number, that is, to find out the sequence unique to other isoforms of the same gene.
 The tool is also capable of marking SNP sites for B6/CAST on the output sequence in the mean while.
-Codes are written in python 2 and use PyCogent 1.9 to connect to Ensembl database.
 
 Although the project was meant to mark the SNP sites of B6/CAST in mice, other species and SNP reference files should work with a minor modification.
 
+## Prerequisites
+* Linux or MacOS
+* Python 2
+* PyCogent 1.9
 
-## Input type
+## Input
 1. Simply enter an Ensembl transcrpit number.
 2. Use a txt file that contains multiple Ensembl transcrpit numbers, where each line contains a single transcript number.
 
-## Output type
+## Output
 1. Shown on the screen.
-2. Out put as txt files. The files will be saved in a folder called "isoform_specific_seq" under local folder.
+2. Saved as txt files in a folder called "isoform_specific_seq" under local folder.
 
 ## SNP site marking for B6/CAST comparison
 You need 2 files named "CAST_snps.vcf.gz" and "CAST_snps.vcf.gz.tbi" as reference files.
 You can use your own files or download the ones from the [website of Mouse Genome Project of Sanger's institute](https://www.sanger.ac.uk/science/data/mouse-genomes-project) .
 Put the referecne file in the same folder and SNP sites will be automatically marked on the result sequence in the form of \[B6/CAST\].
-If there're no designated reference file, the program will show the output without SNP site labeling.
+If there're no designated reference files, the program will show the output without SNP site labeling.
 
 Sample format of vcf files (extracted from "CAST_EiJ.mgp.v5.indels.dbSNP142.normed.vcf" on Sanger's instute's FTP)
 ```
@@ -32,7 +38,7 @@ Input an Ensembl mouse transcrpit number
 ```
 ENSMUST00000079360
 ```
-The output will be
+The output .txt file will show
 ```
 Transcript ID: ENSMUST00000079360
 Gene: Ablim1(ENSMUSG00000025085)
@@ -50,4 +56,4 @@ ENSMUST00000154958
 ENSMUST00000144949
 ENSMUST00000079360
 ```
-The output txt files will be saved in  ./isoform_specific_seq
+There will be 3 output .txt files named as their transcript numbers in ./isoform_specific_seq
