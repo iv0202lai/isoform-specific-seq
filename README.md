@@ -3,6 +3,9 @@ This is a tool used to get isoform-specific sequence of mice from an Ensembl tra
 The tool is also capable of marking SNP sites for B6/CAST on the output sequence in the mean while.
 Codes are written in python 2 and use PyCogent 1.9 to connect to Ensembl database.
 
+Although the project was meant to mark the SNP sites of B6/CAST in mice, other species and SNP reference files should work with a minor modification.
+
+
 ## Input type
 1. Simply enter an Ensembl transcrpit number.
 2. Use a txt file that contains multiple Ensembl transcrpit numbers, where each line contains a single transcript number.
@@ -17,10 +20,15 @@ You can use your own files or download the ones from the [website of Mouse Genom
 Put the referecne file in the same folder and SNP sites will be automatically marked on the result sequence in the form of \[B6/CAST\].
 If there're no designated reference file, the program will show the output without SNP site labeling.
 
-Although the project was meant to mark the SNP sites of B6/CAST in mice, other species and SNP reference files should work with a minor modification.
+Sample format of vcf files (extracted from "CAST_EiJ.mgp.v5.indels.dbSNP142.normed.vcf" on Sanger's instute's FTP)
+```
+#CHROM	POS	ID	REF	ALT	QUAL	FILTER	INFO	FORMAT	CAST_EiJ
+1	3000023	.	C	A	39.2026	MinDP;MinAB	DP4=0,0,4,0;DP=4;CSQ=A||||intergenic_variant||||||||	GT:GQ:DP:MQ0F:GP:PL:AN:MQ:DV:DP4:SP:SGB:PV4:FI	1/1:15:4:0:79,15,0:67,12,0:2:24:4:0,0,4,0:0:-0.556411:.:0
+1	3000185	rs585444580	G	T	228	PASS	DP4=0,0,10,2;DP=12;CSQ=T||||intergenic_variant||||||||	GT:GQ:DP:MQ0F:GP:PL:AN:MQ:DV:DP4:SP:SGB:PV4:FI	1/1:43:12:0:276,43,0:255,36,0:2:54:12:0,0,10,2:0:-0.680642:.:1
+```
 
 ## Example
-Given the input
+Input an Ensembl mouse transcrpit number
 ```
 ENSMUST00000079360
 ```
@@ -36,9 +44,10 @@ Region 1   Position: 57032733-57032889   Length: 157   SNP count: 4
 Region 2   Position: 57215966-57216032   Length: 67   no SNP
 AGGGGAACTGCTACTGGGGAGCCCTGCTTCCCGGGCTTCTGGGTCAGATCTTGATGTCATGTCTGCT
 ```
-Sample format of vcf files (extracted from "CAST_EiJ.mgp.v5.indels.dbSNP142.normed.vcf" on Sanger's instute's FTP)
+You can also input a txt file contain a set of transcript numbers
 ```
-#CHROM	POS	ID	REF	ALT	QUAL	FILTER	INFO	FORMAT	CAST_EiJ
-1	3000023	.	C	A	39.2026	MinDP;MinAB	DP4=0,0,4,0;DP=4;CSQ=A||||intergenic_variant||||||||	GT:GQ:DP:MQ0F:GP:PL:AN:MQ:DV:DP4:SP:SGB:PV4:FI	1/1:15:4:0:79,15,0:67,12,0:2:24:4:0,0,4,0:0:-0.556411:.:0
-1	3000185	rs585444580	G	T	228	PASS	DP4=0,0,10,2;DP=12;CSQ=T||||intergenic_variant||||||||	GT:GQ:DP:MQ0F:GP:PL:AN:MQ:DV:DP4:SP:SGB:PV4:FI	1/1:43:12:0:276,43,0:255,36,0:2:54:12:0,0,10,2:0:-0.680642:.:1
+ENSMUST00000154958
+ENSMUST00000144949
+ENSMUST00000079360
 ```
+The output txt files will be saved in  ./isoform_specific_seq
